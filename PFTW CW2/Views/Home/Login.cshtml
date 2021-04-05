@@ -1,0 +1,45 @@
+﻿
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #inputForm {
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #inputLabel {
+        font-size: larger;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row-fluid col-md mt-5">
+        <h1 id="heading">Please enter your details below.</h1>
+    </div>
+    <form id="inputForm">
+        <div class="form-row">
+            <div class="form-group col-md">
+                <label id="inputLabel" for="emailInput">Email:</label>
+                <input id="inputEmail" type="email" class="form-control form-control-lg" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md">
+                <label id="inputLabel" for="passwordInput">Password:</label>
+                <input id="inputPassword" type="password" class="form-control form-control-lg" />
+            </div>
+        </div>
+        <p>Don't have an account? <a href="C:\Users\david\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\Registration.html">Register here.</a></p>
+        <input id="submitButton" type="submit" class="btn btn-primary btn-lg mt-4">
+    </form>
+</div>
+ 
+
+

@@ -5,6 +5,30 @@ VisualStudioVersion = 15.0.28307.1382
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFTW CW2", "PFTW CW2\PFTW CW2.csproj", "{81D4D1C5-66DA-442B-A415-1D150EA8B70C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OldHTMLPages", "OldHTMLPages", "{2BCF3277-3902-4F52-8B5F-6DF68411DD23}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\AdminLogin.html = ..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\AdminLogin.html
+		..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\AdminPage.html = ..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\AdminPage.html
+		..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\CauseOne.html = ..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\CauseOne.html
+		..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\CreateCause.html = ..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\CreateCause.html
+		..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\Index.html = ..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\Index.html
+		..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\Login.html = ..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\Login.html
+		..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\NewViewCauses.html = ..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\NewViewCauses.html
+		..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\Registration.html = ..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\Registration.html
+		..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\Template.html = ..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\Template.html
+		..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\ViewCauses.html = ..\..\..\Desktop\Programming for the Web\Assessments\Assessment 1\Coursework 1 (Actual)\ViewCauses.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{BE40ABD5-ABD1-4932-91AA-B071385B6DC9}"
+	ProjectSection(SolutionItems) = preProject
+		..\CityTour\CityTour\Views\Shared\_Layout.cshtml = ..\CityTour\CityTour\Views\Shared\_Layout.cshtml
+		..\CityTour\CityTour\Views\Points\Add.cshtml = ..\CityTour\CityTour\Views\Points\Add.cshtml
+		..\CityTour\CityTour\Views\Home\Index.cshtml = ..\CityTour\CityTour\Views\Home\Index.cshtml
+		..\CityTour\CityTour\Views\Points\Manifest.cshtml = ..\CityTour\CityTour\Views\Points\Manifest.cshtml
+		..\CityTour\CityTour\Controllers\PointsController.cs = ..\CityTour\CityTour\Controllers\PointsController.cs
+		..\CityTour\CityTour\Web.config = ..\CityTour\CityTour\Web.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
