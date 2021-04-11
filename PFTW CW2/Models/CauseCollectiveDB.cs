@@ -17,6 +17,11 @@ namespace PFTW_CW2.Models
         protected override void Seed(CauseCollectiveDB context)
         {
             base.Seed(context);
+            StaticData data = StaticData.Instance;
+            context.Users.Add(data.admin);
+            context.Users.Add(data.userTwo);
+            context.Users.Add(data.userThree);
+            context.SaveChanges();
         }
     }
 }

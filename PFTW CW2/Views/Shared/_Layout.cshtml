@@ -31,6 +31,24 @@
 
         h4 {
             margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #container {
+            justify-content: center;
+            align-items: center;
+        }
+
+        #inputForm {
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #inputLabel {
+            font-size: larger;
         }
     </style>
 </head>
@@ -39,7 +57,7 @@
     <div id="bodyWrapper">
         <!--Navbar-->
         <nav class="navbar navbar-expand-lg bg-dark">
-           @Html.ActionLink("Cause Collective", "Index", "Home", new { @class = "navbar-brand" })
+            @Html.ActionLink("Cause Collective", "Index", "Home", new { @class = "navbar-brand" })
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
                 <span class="fas fa-bars"></span>
             </button>
@@ -47,17 +65,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li>@Html.ActionLink("Login", "Login", "Home", new { @class = "nav-item" })</li>
-                    <li>@Html.ActionLink("View Causes", "View Causes", "Home", new { @class = "nav-item" })</li>
+                    <li>@Html.ActionLink("View Causes", "ViewCauses", "Home", new { @class = "nav-item" })</li>
                     <li>@Html.ActionLink("Create Cause", "Create Cause", "Home", new { @class = "nav-item" })</li>
                 </ul>
             </div>
         </nav>
     </div>
     <div>
-    @RenderBody()
+        @RenderBody()
+        <footer>
+            @RenderSection("scripts", required: false)
+        </footer>
     </div>
-    <script>
-      
-    </script>
 </body>
 </html>

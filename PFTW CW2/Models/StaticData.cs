@@ -8,12 +8,15 @@ namespace PFTW_CW2.Models
     public class StaticData
     {
         static StaticData instance = null;
-        List<User> exampleSigList { get; set; }
-        List<Cause> exampleCauseList { get; set; }
+        public User admin { get; set; }
+        public User userTwo { get; set; }
+        public User userThree { get; set; }
+        public List<User> exampleSigList { get; set; }
+        public List<Cause> exampleCauseList { get; set; }
 
         StaticData()
         {
-            User admin = new User
+            admin = new User
             {
                 id = 1,
                 firstName = "Fraser",
@@ -24,9 +27,9 @@ namespace PFTW_CW2.Models
                 isActive = true
             };
 
-            User userTwo = new User
+            userTwo = new User
             {
-                id = 1,
+                id = 2,
                 firstName = "John",
                 lastName = "Smith",
                 email = "john@smith.com",
@@ -35,9 +38,9 @@ namespace PFTW_CW2.Models
                 isActive = true
             };
 
-            User userThree = new User
+            userThree = new User
             {
-                id = 1,
+                id = 3,
                 firstName = "Mary",
                 lastName = "Smith",
                 email = "mary@smith.com",
@@ -47,8 +50,6 @@ namespace PFTW_CW2.Models
             };
 
             exampleSigList = new List<User>();
-
-            exampleSigList.Add(admin);
             exampleSigList.Add(userTwo);
             exampleSigList.Add(userThree);
 
