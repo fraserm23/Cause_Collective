@@ -41,6 +41,13 @@ namespace PFTW_CW2.Controllers
             return View();
         }
 
+        public ActionResult CreateCause()
+        {
+            ViewBag.Message = "Create Cause";
+            return View();
+        }
+
+
         public ActionResult Error()
         {
             ViewBag.Message = "Error";
@@ -98,7 +105,7 @@ namespace PFTW_CW2.Controllers
                     Response.Cookies["sessionID"].Expires = DateTime.Now.AddDays(7);
                 }
                 
-                return View("AdminPage");
+                return View("Index");
             }
 
             var userFromDB = db.Users.SingleOrDefault(user => user.email == email);
@@ -118,13 +125,68 @@ namespace PFTW_CW2.Controllers
                     Response.Cookies["sessionID"].Expires = DateTime.Now.AddDays(7);
                 }
 
-                return View("ViewCauses");
+                return View("Index");
             } else
             {
                 ViewBag.Message = "An unknown error occured.";
                 return View("Error");
             }
             
+        }
+
+        [HttpPost]
+        public ActionResult AddCause(String title, String description, String imageURL)
+        {
+            var causeFromDB = db.Causes.SingleOrDefault(cause => cause.title == title);
+
+            if(causeFromDB == null)
+            {
+                var newID = db.Causes.Count() +1;
+                Cause newCause = new Cause
+                {
+                    id = newID,
+                    title = title,
+                    description = description,
+                    imageURL = imageURL,
+                    isActive = true,
+                };
+
+                db.Causes.Add(newCause);
+                db.SaveChanges();
+
+                var userIDAsString = Request.Cookies["sessionID"].Value;
+
+                if (userIDAsString == "admin")
+                {
+                    var admin = db.Users.SingleOrDefault(u => u.isAdmin == true);
+                    admin.userCauses.Add(newCause);
+                }
+                else
+                {
+                    var userID = Convert.ToInt32(userIDAsString);
+                    var user = db.Users.SingleOrDefault(u => u.id == userID);
+                    user.userCauses.Add(newCause);
+                }
+
+                ViewBag.Message = "Cause successfully added!";
+                return View("ViewCauses");
+            }
+
+            if(causeFromDB.title == title)
+            {
+                ViewBag.Message = "A cause with this title already exists.";
+                return View("Error");
+            }
+
+            if(causeFromDB.description == description)
+            {
+                ViewBag.Message = "A cause with this description already exists.";
+                return View("Error");
+            } else
+            {
+                ViewBag.Message = "An unknown error occured";
+                return View("Error");
+            }
         }
     }
 }

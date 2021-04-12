@@ -42,8 +42,27 @@
     }
 </div>
 
+@section scripts {
 
 <script>
+    $(document).ready(function () {
+        var sessionID = document.cookie.split("=")[1];
+        var sessionIDNum;
+
+        try {
+            sessionIDNum = parseInt(sessionID);
+        } catch {
+            sessionIDNum = 0;
+        }
+
+        if (sessionID == "admin" || sessionIDNum > 0) {
+            $("#createCauseLink").css("display", "inline");
+        }
+
+        if (sessionID == "admin") {
+            $("#adminLink").css("display", "inline");
+        }
+    });
    
     //event handler for submit button
     $("#submitButton").click(function () {
@@ -86,3 +105,4 @@
     });
 </script>
 
+}

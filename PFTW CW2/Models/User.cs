@@ -14,5 +14,6 @@ namespace PFTW_CW2.Models
         public String password { get; set; }
         public Boolean isAdmin { get; set; }
         public Boolean isActive { get; set; }
+        public List<Cause> userCauses { get; set; }
     }
 }

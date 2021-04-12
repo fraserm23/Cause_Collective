@@ -1,0 +1,91 @@
+﻿@model PFTW_CW2.Models.Cause
+
+@{
+    ViewBag.Title = "Create Cause";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .form-control{
+        width: 400px;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row-fluid col-md mt-5">
+        <h1 id="heading">Create your Cause below!</h1>
+    </div>
+    @using (Html.BeginForm("AddCause", "Home", FormMethod.Post, new { @id = "inputForm" }))
+    {
+        <div class="form-row">
+            <div class="form-group col-md">
+                <label id="inputLabel">Title:</label>
+                @Html.TextBoxFor(cause => cause.title, new { @class = "form-control form-control-lg", @id = "inputTitle", @placeholder = "Make it stand out!", @required = true })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md">
+                <label id="inputLabel">Description:</label>
+                @Html.TextAreaFor(cause => cause.description, new { @class = "form-control form-control-lg", @id = "inputDescription", @rows = 5, @placeholder = "Tell us about your cause...", @required = true })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md">
+                <label id="inputLabel">Image URL:</label>
+                @Html.TextBoxFor(cause => cause.imageURL, new { @class = "form-control form-control-lg", @id = "inputURL", @required = true })
+            </div>
+        </div>
+        <input id="submitButton" type="submit" class="btn btn-primary btn-lg mt-4">
+    }
+</div>
+
+@section scripts {
+
+<script>
+    $(document).ready(function () {
+        var sessionID = document.cookie.split("=")[1];
+        var sessionIDNum;
+
+        try {
+            sessionIDNum = parseInt(sessionID);
+        } catch {
+            sessionIDNum = 0;
+        }
+
+        if (sessionID == "admin" || sessionIDNum > 0) {
+            $("#createCauseLink").css("display", "inline");
+        }
+
+        if (sessionID == "admin") {
+            $("#adminLink").css("display", "inline");
+        }
+    });
+
+    //event handler for submit button
+    $("#submitButton").click(function () {
+
+        //checks if a title has been entered in the field
+        if ($("#inputTitle").val() < 1) {
+            event.preventDefault();
+            alert("Please enter a title");
+            return;
+        }
+
+        //checks if a description has been entered in the field
+        if ($("#inputDescription").val() < 1) {
+            event.preventDefault();
+            alert("Please enter a description");
+            return;
+        }
+
+        //checks if a file has been uploaded (unsure how to validate size and type)
+        if ($("#inputURL").val() < 1) {
+            event.preventDefault();
+            alert("Please add an image URL");
+            return;
+        }
+
+    });
+</script>
+
+}

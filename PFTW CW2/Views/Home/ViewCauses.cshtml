@@ -5,3 +5,17 @@
 
 <h2>View Causes</h2>
 
+@section scripts {
+    
+<script>
+    $(document).ready(function () {
+            var sessionID = document.cookie.split("=")[1];
+
+
+            if (sessionID == "admin") {
+                $("#createCauseLink").css("display", "inline");
+            }
+        });
+</script>    
+    
+}

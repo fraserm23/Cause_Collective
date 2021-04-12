@@ -4,15 +4,15 @@
 }
 
 <style>
-.btn {
-       margin-top: 20px;
-     }
+    .btn {
+        margin-top: 20px;
+    }
 
-.jumbotron {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    .jumbotron {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 </style>
 
@@ -21,7 +21,32 @@
         <h1>Welcome to Cause Collective!</h1>
         <h4>You've found the place for supporting causes you care about.</h4>
         <h4>Select a button to get started.</h4>
-        @Html.ActionLink("Create Cause", "Create Cause", "Home", new { @class = "btn btn-primary btn-lg" })
+        @Html.ActionLink("View Causes", "ViewCauses", "Home", new { @class = "btn btn-primary btn-lg" })
         @Html.ActionLink("Login", "Login", "Home", new { @class = "btn btn-primary btn-lg" })
     </div>
 </div>
+
+@section scripts {
+
+<script>
+    $(document).ready(function () {
+        var sessionID = document.cookie.split("=")[1];
+        var sessionIDNum;
+
+        try {
+            sessionIDNum = parseInt(sessionID);
+        } catch {
+            sessionIDNum = 0;
+        }
+
+        if (sessionID == "admin" || sessionIDNum > 0 ) {
+            $("#createCauseLink").css("display", "inline");
+        }
+
+        if (sessionID == "admin") {
+            $("#adminLink").css("display", "inline");
+        }
+    });
+</script>
+
+}
