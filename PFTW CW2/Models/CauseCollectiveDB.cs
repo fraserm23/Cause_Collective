@@ -21,6 +21,7 @@ namespace PFTW_CW2.Models
             context.Users.Add(data.admin);
             context.Users.Add(data.userTwo);
             context.Users.Add(data.userThree);
+            context.Causes.Add(data.causeOne);
             context.SaveChanges();
         }
     }

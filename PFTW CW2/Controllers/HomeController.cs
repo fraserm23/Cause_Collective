@@ -23,6 +23,16 @@ namespace PFTW_CW2.Controllers
             return View();
         }
 
+        public ActionResult Logout()
+        {
+            HttpCookie sessionID = new HttpCookie("sessionID");
+            sessionID.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(sessionID);
+
+            ViewBag.Message = "";
+            return View();
+        }
+
         public ActionResult Registration()
         {
             ViewBag.Message = "Registration";
@@ -70,7 +80,7 @@ namespace PFTW_CW2.Controllers
                     email = email,
                     password = password,
                     isAdmin = false,
-                    isActive = true
+                    isActive = true,
                 };
 
                 db.Users.Add(newUser);
@@ -157,15 +167,17 @@ namespace PFTW_CW2.Controllers
                 var userIDAsString = Request.Cookies["sessionID"].Value;
 
                 if (userIDAsString == "admin")
-                {
+                { 
                     var admin = db.Users.SingleOrDefault(u => u.isAdmin == true);
-                    admin.userCauses.Add(newCause);
+                    newCause.owner = admin;
+                    admin.UserCauses.Add(newCause);
                 }
                 else
                 {
                     var userID = Convert.ToInt32(userIDAsString);
                     var user = db.Users.SingleOrDefault(u => u.id == userID);
-                    user.userCauses.Add(newCause);
+                    newCause.owner = user;
+                    user.UserCauses.Add(newCause);
                 }
 
                 ViewBag.Message = "Cause successfully added!";

@@ -11,6 +11,8 @@ namespace PFTW_CW2.Models
         public User admin { get; set; }
         public User userTwo { get; set; }
         public User userThree { get; set; }
+        public Cause causeOne { get; set; }
+        public Cause causeTwo { get; set; }
         public List<User> exampleSigList { get; set; }
         public List<Cause> exampleCauseList { get; set; }
 
@@ -24,7 +26,7 @@ namespace PFTW_CW2.Models
                 email = "40086074@live.napier.ac.uk",
                 password = "password1234",
                 isAdmin = true,
-                isActive = true
+                isActive = true,
             };
 
             userTwo = new User
@@ -53,7 +55,7 @@ namespace PFTW_CW2.Models
             exampleSigList.Add(userTwo);
             exampleSigList.Add(userThree);
 
-            Cause causeOne = new Cause
+            causeOne = new Cause
             {
                 id = 1,
                 title = "Save the Amazon",
@@ -61,13 +63,14 @@ namespace PFTW_CW2.Models
                 signatureCount = 1000,
                 signatureList = exampleSigList,
                 imageURL = "#",
-                isActive = true
+                isActive = true,
+                owner = admin  
             };
 
             exampleCauseList = new List<Cause>();
-
             exampleCauseList.Add(causeOne);
-         }
+
+        }
 
         public static StaticData Instance
         {

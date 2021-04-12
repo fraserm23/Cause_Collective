@@ -41,6 +41,8 @@
 
         if (sessionID == "admin" || sessionIDNum > 0 ) {
             $("#createCauseLink").css("display", "inline");
+            $("#loginLink").css("display", "none");
+            $("#logoutLink").css("display", "inline");
         }
 
         if (sessionID == "admin") {

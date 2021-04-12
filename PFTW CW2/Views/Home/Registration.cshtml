@@ -35,7 +35,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md">
-                <span>I agree to the @Html.ActionLink("terms and conditions", "TermsAndConditions", "Home").</span> @Html.CheckBox("AgreeTerms")
+                <span>I agree to the @Html.ActionLink("terms and conditions", "TermsAndConditions", "Home").</span> @Html.CheckBox("AgreeTerms", new {@required = true})
             </div>
         </div>
         <input id="submitButton" type="submit" class="btn btn-primary btn-lg mt-4">

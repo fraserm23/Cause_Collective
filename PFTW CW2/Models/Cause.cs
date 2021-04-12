@@ -14,5 +14,11 @@ namespace PFTW_CW2.Models
         public List<User> signatureList { get; set; }
         public String imageURL { get; set; }
         public Boolean isActive { get; set; }
+        public User owner { get; set; }
+
+        public Cause()
+        {
+            signatureList = new List<User>();
+        }
     }
 }

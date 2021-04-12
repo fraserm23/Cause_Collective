@@ -59,6 +59,14 @@
         #inputLabel {
             font-size: larger;
         }
+
+        #loginLink {
+            display: inline;
+        }
+
+        #logoutLink {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -73,7 +81,8 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li>@Html.ActionLink("Login", "Login", "Home", new { @class = "nav-item" })</li>
+                    <li id="loginLink">@Html.ActionLink("Login", "Login", "Home", new { @class = "nav-item" })</li>
+                    <li id="logoutLink">@Html.ActionLink("Logout", "Logout", "Home", new { @class = "nav-item" })</li>
                     <li>@Html.ActionLink("View Causes", "ViewCauses", "Home", new { @class = "nav-item" })</li>
                     <li id="createCauseLink">@Html.ActionLink("Create Cause", "CreateCause", "Home", new { @class = "nav-item" })</li>
                     <li id="adminLink">@Html.ActionLink("Admin", "AdminPage", "Home", new { @class = "nav-item" })</li>
