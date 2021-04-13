@@ -1,21 +1,72 @@
-﻿@{
+﻿@model List<PFTW_CW2.Models.Cause>
+
+@{
     ViewBag.Title = "View Causes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View Causes</h2>
+<style>
+    img {
+        width: 300px;
+        height: auto;
+    }
+
+    #description {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row-fluid col-md mt-5">
+        <h1>Current Causes</h1>
+    </div>
+    @foreach (var cause in Model)
+    {
+        if (cause.isActive == true)
+        {
+        <div class="row">
+            <div class="col-xl-3 offset-3 mt-5">
+                <img src="@cause.imageURL" />
+            </div>
+            <div class="col-xl-4 ml-2 mt-5">
+                <h2>@cause.title</h2>
+                <p id="description">@cause.description</p>
+                <p><strong>@cause.signatureCount</strong> signatures</p>
+                @Html.ActionLink("Go to cause", "ViewCause", "Home", new { causeID = cause.id }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+        <hr class="my-5">
+        }
+    }
+</div>
 
 @section scripts {
-    
+
 <script>
     $(document).ready(function () {
-            var sessionID = document.cookie.split("=")[1];
+        var sessionID = document.cookie.split("=")[1];
+        var sessionIDNum;
 
+        try {
+            sessionIDNum = parseInt(sessionID);
+        } catch {
+            sessionIDNum = 0;
+        }
 
-            if (sessionID == "admin") {
-                $("#createCauseLink").css("display", "inline");
-            }
-        });
-</script>    
-    
+        if (sessionID == "admin" || sessionIDNum > 0) {
+            $("#createCauseLink").css("display", "inline");
+            $("#loginLink").css("display", "none");
+            $("#logoutLink").css("display", "inline");
+        }
+
+        if (sessionID == "admin") {
+            $("#adminLink").css("display", "inline");
+        }
+    });
+</script>
+
 }

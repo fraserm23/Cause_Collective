@@ -1,0 +1,40 @@
+﻿@model PFTW_CW2.Models.Cause
+
+@{
+    ViewBag.Title = "View Cause";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View Cause</h2>
+<p>@Model.title</p>
+
+@section scripts {
+  
+<script>
+     $(document).ready(function () {
+        var sessionID = document.cookie.split("=")[1];
+        var sessionIDNum;
+
+        try {
+            sessionIDNum = parseInt(sessionID);
+        } catch {
+            sessionIDNum = 0;
+        }
+
+        if (sessionID == "admin" || sessionIDNum > 0 ) {
+            $("#createCauseLink").css("display", "inline");
+            $("#loginLink").css("display", "none");
+            $("#logoutLink").css("display", "inline");
+        }
+
+        if (sessionID == "admin") {
+            $("#adminLink").css("display", "inline");
+        }
+    });
+</script>
+    
+    
+    
+    
+    
+}

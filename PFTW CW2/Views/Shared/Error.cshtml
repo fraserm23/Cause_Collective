@@ -15,5 +15,27 @@
         <h1>Error.</h1>
         <h2>@ViewBag.Message</h2>
     </hgroup>
+    <script>
+        $(document).ready(function () {
+            var sessionID = document.cookie.split("=")[1];
+            var sessionIDNum;
+
+            try {
+                sessionIDNum = parseInt(sessionID);
+            } catch {
+                sessionIDNum = 0;
+            }
+
+            if (sessionID == "admin" || sessionIDNum > 0) {
+                $("#createCauseLink").css("display", "inline");
+                $("#loginLink").css("display", "none");
+                $("#logoutLink").css("display", "inline");
+            }
+
+            if (sessionID == "admin") {
+                $("#adminLink").css("display", "inline");
+            }
+        });
+    </script>
 </body>
 </html>

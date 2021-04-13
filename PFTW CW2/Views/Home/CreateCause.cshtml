@@ -13,7 +13,7 @@
 
 <div class="container-fluid">
     <div class="row-fluid col-md mt-5">
-        <h1 id="heading">Create your Cause below!</h1>
+        <h1 id="heading">@ViewBag.Message</h1>
     </div>
     @using (Html.BeginForm("AddCause", "Home", FormMethod.Post, new { @id = "inputForm" }))
     {
@@ -54,6 +54,8 @@
 
         if (sessionID == "admin" || sessionIDNum > 0) {
             $("#createCauseLink").css("display", "inline");
+            $("#loginLink").css("display", "none");
+            $("#logoutLink").css("display", "inline");
         }
 
         if (sessionID == "admin") {

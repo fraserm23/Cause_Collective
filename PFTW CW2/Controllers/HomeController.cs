@@ -48,12 +48,33 @@ namespace PFTW_CW2.Controllers
         public ActionResult ViewCauses()
         {
             ViewBag.Message = "View Causes";
-            return View();
+            return View(db.Causes.ToList());
+        }
+
+        public ActionResult ViewCause(int causeID)
+        {
+            var causeFromDB = db.Causes.SingleOrDefault(cause => cause.id == causeID);
+
+            if (causeFromDB.id == causeID)
+            {
+                return View(causeFromDB);
+            }
+
+            if (causeFromDB == null)
+            {
+                ViewBag.Message = "Cause was not found.";
+                return View("Error");
+            }
+            else
+            {
+                ViewBag.Message = "Cause was not found.";
+                return View("Error");
+            }
         }
 
         public ActionResult CreateCause()
         {
-            ViewBag.Message = "Create Cause";
+            ViewBag.Message = "Create your cause below!";
             return View();
         }
 
@@ -181,7 +202,7 @@ namespace PFTW_CW2.Controllers
                 }
 
                 ViewBag.Message = "Cause successfully added!";
-                return View("ViewCauses");
+                return View("CreateCause");
             }
 
             if(causeFromDB.title == title)
