@@ -15,28 +15,27 @@
     <div class="row-fluid col-md mt-5">
         <h1 id="heading">@ViewBag.Message</h1>
     </div>
-    @using (Html.BeginForm("AddCause", "Home", FormMethod.Post, new { @id = "inputForm" }))
-    {
-        <div class="form-row">
-            <div class="form-group col-md">
-                <label id="inputLabel">Title:</label>
-                @Html.TextBoxFor(cause => cause.title, new { @class = "form-control form-control-lg", @id = "inputTitle", @placeholder = "Make it stand out!", @required = true })
+        @using (Html.BeginForm("AddCause", "Home", FormMethod.Post, new { @id = "inputForm" })){
+            <div class="form-row">
+                <div class="form-group col-md">
+                    <label id="inputLabel">Title:</label>
+                    @Html.TextBoxFor(cause => cause.title, new { @class = "form-control form-control-lg", @id = "inputTitle", @placeholder = "Make it stand out!", @required = true })
+                </div>
             </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md">
-                <label id="inputLabel">Description:</label>
-                @Html.TextAreaFor(cause => cause.description, new { @class = "form-control form-control-lg", @id = "inputDescription", @rows = 5, @placeholder = "Tell us about your cause...", @required = true })
+            <div class="form-row">
+                <div class="form-group col-md">
+                    <label id="inputLabel">Description:</label>
+                    @Html.TextAreaFor(cause => cause.description, new { @class = "form-control form-control-lg", @id = "inputDescription", @rows = 5, @placeholder = "Tell us about your cause...", @required = true })
+                </div>
             </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md">
-                <label id="inputLabel">Image URL:</label>
-                @Html.TextBoxFor(cause => cause.imageURL, new { @class = "form-control form-control-lg", @id = "inputURL", @required = true })
+            <div class="form-row">
+                <div class="form-group col-md">
+                    <label id="inputLabel">Image URL:</label>
+                    @Html.TextBoxFor(cause => cause.imageURL, new { @class = "form-control form-control-lg", @id = "inputURL", @required = true })
+                </div>
             </div>
-        </div>
-        <input id="submitButton" type="submit" class="btn btn-primary btn-lg mt-4">
-    }
+            <input id="submitButton" type="submit" class="btn btn-primary btn-lg mt-4">
+        }
 </div>
 
 @section scripts {
@@ -87,6 +86,7 @@
             return;
         }
 
+        
     });
 </script>
 

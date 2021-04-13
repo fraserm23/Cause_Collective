@@ -5,13 +5,108 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View Cause</h2>
-<p>@Model.title</p>
+<style>
+
+    h3 {
+        text-align: center;
+    }
+
+    img {
+        width: 90%;
+        max-width: 500px;
+        height: auto;
+    }
+
+    .btn {
+        margin-right: 10px;
+    }
+
+    #addButton{
+        display: none;
+    }
+
+    #removeButton{
+        display: none;
+    }
+
+    #loginButton{
+        display: inline;
+    }
+
+    #buttonContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #description {
+        max-width: 500px;
+        text-align: center;
+        margin-bottom: 50px;
+        margin-left: 31%;
+    }
+
+    #sigCount {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row-fluid col-md mt-5">
+        <h1 id="heading">@Model.title</h1>
+    </div>
+    <div class="row-fluid mt-5">
+        <h3 id="sigCount">Signature count: <strong>@Model.signatureCount</strong></h3>
+    </div>
+    <div class="row-fluid">
+        <div class="col-8-lg mt-5 offset-4">
+            <img src="@Model.imageURL" />
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="col-4-lg mt-5 ml-5">
+            <p id="description">@Model.description</p>
+        </div>
+    </div>
+    <div class="row col-4-lg offset-5">
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h3>
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">
+                            Click to see signatures
+                        </button>
+                    </h3>
+                </div>
+            </div>
+            <div id="collapseOne" class="collapse hidden" data-parent="#accordion">
+                <div class="card-body">
+                    <ul id="nameList" class="list-group list-group-flush">
+                        @foreach (var signature in Model.signatureList)
+                        {
+                            <li class="list-group-item">@signature.firstName @signature.lastName</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div id="buttonContainer">
+                @Html.ActionLink("Login to sign", "Login", "Home", new { @id = "loginButton", @class = "btn btn-primary mt-5 mb-5" })
+                @Html.ActionLink("Add your name?", "AddName", "Home", new { causeID = Model.id }, new { @id = "addButton", @class = "btn btn-primary mt-5 mb-5"})
+                @Html.ActionLink("Remove your name?", "RemoveName", "Home", new { causeID = Model.id }, new { @id = "removeButton", @class = "btn btn-primary mt-5 mb-5"})
+            </div>
+        </div>
+    </div>
+</div>
+  
 
 @section scripts {
-  
+
 <script>
-     $(document).ready(function () {
+    $(document).ready(function () {
         var sessionID = document.cookie.split("=")[1];
         var sessionIDNum;
 
@@ -21,20 +116,20 @@
             sessionIDNum = 0;
         }
 
-        if (sessionID == "admin" || sessionIDNum > 0 ) {
+        if (sessionID == "admin" || sessionIDNum > 0) {
             $("#createCauseLink").css("display", "inline");
             $("#loginLink").css("display", "none");
             $("#logoutLink").css("display", "inline");
+            $("#addButton").css("display", "inline");
+            $("#removeButton").css("display", "inline");
+            $("#loginButton").css("display", "none");
         }
 
         if (sessionID == "admin") {
             $("#adminLink").css("display", "inline");
         }
     });
+
 </script>
-    
-    
-    
-    
-    
+
 }

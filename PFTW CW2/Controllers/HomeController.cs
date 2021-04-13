@@ -42,7 +42,7 @@ namespace PFTW_CW2.Controllers
         public ActionResult AdminPage()
         {
             ViewBag.Message = "Admin Page";
-            return View();
+            return View(db.Causes.ToList());
         }
 
         public ActionResult ViewCauses()
@@ -170,9 +170,9 @@ namespace PFTW_CW2.Controllers
         {
             var causeFromDB = db.Causes.SingleOrDefault(cause => cause.title == title);
 
-            if(causeFromDB == null)
+            if (causeFromDB == null)
             {
-                var newID = db.Causes.Count() +1;
+                var newID = db.Causes.Count() + 1;
                 Cause newCause = new Cause
                 {
                     id = newID,
@@ -188,7 +188,7 @@ namespace PFTW_CW2.Controllers
                 var userIDAsString = Request.Cookies["sessionID"].Value;
 
                 if (userIDAsString == "admin")
-                { 
+                {
                     var admin = db.Users.SingleOrDefault(u => u.isAdmin == true);
                     newCause.owner = admin;
                     admin.UserCauses.Add(newCause);
@@ -205,21 +205,135 @@ namespace PFTW_CW2.Controllers
                 return View("CreateCause");
             }
 
-            if(causeFromDB.title == title)
+            if (causeFromDB.title == title)
             {
                 ViewBag.Message = "A cause with this title already exists.";
                 return View("Error");
             }
 
-            if(causeFromDB.description == description)
+            if (causeFromDB.description == description)
             {
                 ViewBag.Message = "A cause with this description already exists.";
                 return View("Error");
-            } else
+            }
+            else
             {
                 ViewBag.Message = "An unknown error occured";
                 return View("Error");
             }
         }
+
+        public ActionResult removeCause(int causeID)
+        {
+            var causeFromDB = db.Causes.SingleOrDefault(cause => cause.id == causeID);
+
+            if (causeFromDB != null)
+            {
+                db.Causes.Remove(causeFromDB);
+                db.SaveChanges();
+                return View("AdminPage", db.Causes.ToList());
+            }
+            else
+            {
+                ViewBag.Message = "An unknown error occured";
+                return View("Error");
+            }
+        }
+
+        public ActionResult AddName(int causeID)
+        {
+            var causeFromDB = db.Causes.SingleOrDefault(cause => cause.id == causeID);
+
+            var userIDAsString = Request.Cookies["sessionID"].Value;
+
+            if (causeFromDB.id == causeID && userIDAsString == "admin")
+            {
+                var signature = db.Users.SingleOrDefault(user => user.isAdmin == true);
+
+                var userToCheck = causeFromDB.signatureList.SingleOrDefault(user => user.id == signature.id);
+
+                if(userToCheck == signature)
+                {
+                    ViewBag.Message = "You have already signed this cause";
+                    return View("Error");
+                }
+                else
+                {
+                    causeFromDB.signatureList.Add(signature);
+                    causeFromDB.signatureCount++;
+                    db.SaveChanges();
+                }
+
+            } else
+            {
+                var userID = Convert.ToInt32(userIDAsString);
+                var signature = db.Users.SingleOrDefault(user => user.id == userID);
+
+                var userToCheck = causeFromDB.signatureList.SingleOrDefault(user => user.id == signature.id);
+
+                if (userToCheck == signature)
+                {
+                    ViewBag.Message = "You have already signed this cause";
+                    return View("Error");
+                }
+                else
+                {
+                    causeFromDB.signatureList.Add(signature);
+                    causeFromDB.signatureCount++;
+                    db.SaveChanges();
+                }
+            }
+
+            return View("ViewCause", causeFromDB);
+        }
+
+        public ActionResult RemoveName(int causeID)
+        {
+            var causeFromDB = db.Causes.SingleOrDefault(cause => cause.id == causeID);
+
+            var userIDAsString = Request.Cookies["sessionID"].Value;
+
+            if (causeFromDB.id == causeID && userIDAsString == "admin")
+            {
+                var signature = db.Users.SingleOrDefault(user => user.isAdmin == true);
+
+                var userToCheck = causeFromDB.signatureList.SingleOrDefault(user => user.id == signature.id);
+
+                if (userToCheck == null)
+                {
+                    ViewBag.Message = "You have not signed this cause";
+                    return View("Error");
+                }
+                else
+                {
+                    causeFromDB.signatureList.Remove(signature);
+                    causeFromDB.signatureCount--;
+                    db.SaveChanges();
+                }
+
+            }
+            else
+            {
+                var userID = Convert.ToInt32(userIDAsString);
+                var signature = db.Users.SingleOrDefault(user => user.id == userID);
+
+                var userToCheck = causeFromDB.signatureList.SingleOrDefault(user => user.id == signature.id);
+
+                if (userToCheck == null)
+                {
+                    ViewBag.Message = "You have not signed this cause";
+                    return View("Error");
+                }
+                else
+                {
+                    causeFromDB.signatureList.Remove(signature);
+                    causeFromDB.signatureCount--;
+                    db.SaveChanges();
+                }
+            }
+
+            return View("ViewCause", causeFromDB);
+        }
+
     }
-}
+    }

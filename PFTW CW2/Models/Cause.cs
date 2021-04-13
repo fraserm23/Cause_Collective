@@ -19,6 +19,8 @@ namespace PFTW_CW2.Models
         public Cause()
         {
             signatureList = new List<User>();
+            signatureCount = signatureList.Count();
         }
     }
+
 }
